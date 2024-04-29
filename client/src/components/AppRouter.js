@@ -13,7 +13,7 @@ const AppRouter = () => {
                 <Route key={path} path={path} element={element} exact/>
             )}
 
-            {user._user.role === "EMPLOYEE" && workerRoutes.map(({path, element}) =>
+            {user._user.role === "WORKER" && workerRoutes.map(({path, element}) =>
                 <Route key={path} path={path} element={element} exact/>
             )}
             {publicRoutes.map(({path, element}) =>
