@@ -1,3 +1,71 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.nav-link{
+    color: black !important;
+}
+
+.nav-link:hover{
+    color: white !important;
+    background-color: #3B82F6 !important;
+}
+.nav-link:active{
+    color: white !important;
+}
+
+input:focus{
+    border: #1E4ED8 1px solid !important;
+    box-shadow:  rgba(59, 130, 246, 0.35) 0 0 0 0.25rem !important;
+}
+.table-wrapper{
+    height: 650px;
+    overflow-y: scroll;
+}
+th{
+    vertical-align: baseline;
+    text-align: center;
+}
+tbody{
+    th{
+        font-weight: 400;
+    }
+}
+Button.show,.dropdown-menu.show {
+    background-color: #1E4ED8 !important;
+    a{
+        background-color: unset;
+        color: white;
+    }
+    a:hover{
+        background-color: #3B82F6;
+    }
+}
+
+
+.changesForm{
+    animation: show 1s forwards;
+}
+
+.changesButton{
+    animation: show 1s;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+

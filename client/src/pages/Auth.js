@@ -1,40 +1,59 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
+import {ADMIN_ROUTE, WORKER_ROUTE} from "../utils/consts";
+import {Context} from "../index";
+import {useNavigate} from "react-router-dom";
 
 const Auth = () => {
+    const {user} = useContext(Context)
+    const [number, setNumber] = useState('')
+    const [password, setPassword] = useState('')
+    const navigate = useNavigate()
+
+    const login = () => {
+        user.login(number, password)
+    }
+
+    useEffect(() => {
+        if (user._user.role === "ADMIN") {
+            navigate(ADMIN_ROUTE)
+        }
+        if (user._user.role === "WORKER") {
+            navigate(WORKER_ROUTE)
+        }
+    }, [user._user.role]);
+
+    console.log(ADMIN_ROUTE)
+
     return (
         <div style={{height: "calc(100vh - 96px)"}} className="px-56 flex justify-center items-center">
             <div className="w-96 flex flex-col items-center justify-between h-96">
-                <h1 className="text-5xl select-none">Авторизация</h1>
-                <form className="flex-col flex w-full">
-                    <span className="select-none">Номер</span>
+                <h1 className="text-5xl select-none mb-6">Авторизация</h1>
+                <form className="flex-col flex w-full" action="#" method="POST">
+                    <span className="select-none text-sm font-medium leading-6 text-gray-900 ">Номер</span>
                     <input
-                        className="mb-5 block h-12 w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                                  focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                                  disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-                                  invalid:border-pink-500 invalid:text-pink-600
-                                  focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+                        required
+                        className="mb-5 px-3 py-2 text-sm shadow-sm placeholder-slate-400
+                                  focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                         placeholder="введите номер..."
+                        onChange={event => setNumber(event.target.value)}
                     />
-                    <span className="select-none">Пароль</span>
+                    <span className="select-none text-sm font-medium leading-6 text-gray-900">Пароль</span>
                     <input
-                        className="mb-5 block h-12 w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                                  focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                                  disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-                                  invalid:border-pink-500 invalid:text-pink-600
-                                  focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+                        required
+                        className="mb-5 px-3 py-2 text-sm shadow-sm placeholder-slate-400
+                                  focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                         placeholder="введите пароль..."
+                        onChange={event => setPassword(event.target.value)}
                     />
-                    <p className="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
-                        Неправильный логин или пароль
-                    </p>
                 </form>
 
-                <button className="bg-blue-400 text-amber-50 w-full h-12 pb-1 rounded text-lg">
+                <button
+                    className="bg-blue-400 text-amber-50 w-full h-12 pb-1 rounded text-lg hover:bg-blue-700 duration-500"
+                    onClick={() => login()}>
                     войти
                 </button>
             </div>
         </div>
-
     );
 };
 

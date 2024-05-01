@@ -6,14 +6,14 @@ export class IUser {
         this.id = ''
         this.name = ''
         this.number = ''
-        this.role = 'ADMIN'
+        this.role = ''
     }
 }
 
 export default class UserStore {
     constructor() {
         this._user = new IUser()
-        this._isAuth = true
+        this._isAuth = false
         makeAutoObservable(this)
     }
 
@@ -76,6 +76,17 @@ export default class UserStore {
             this.setUser(new IUser())
         }
         catch (e){
+            console.log(e.response?.data?.message)
+        }
+    }
+
+    async checkAuth() {
+        try {
+            const response =  await UserServices.refresh()
+            localStorage.setItem('token', response.data.accessToken);
+            this.setIsAuth(true)
+            this.setUser(response.data.user)
+        } catch (e) {
             console.log(e.response?.data?.message)
         }
     }
