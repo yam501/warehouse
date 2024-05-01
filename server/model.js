@@ -28,9 +28,10 @@ const Items = sequelize.define('items', {
 
 const History = sequelize.define('history', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    itemId: {type: DataTypes.INTEGER, allowNull: false},
+    name: {type: DataTypes.STRING, allowNull: false},
+    category: {type: DataTypes.STRING, allowNull: false},
     date: {type: DataTypes.DATE, allowNull: false},
-    changes:{type: DataTypes.INTEGER, allowNull:false, defaultValue:0}
+    changes: {type: DataTypes.STRING, allowNull: false, defaultValue: 0}
 
 }, {timestamps: false})
 
@@ -39,16 +40,7 @@ Token.belongsTo(Users, {
     foreignKey: 'userId',
 })
 
-Items.hasMany(History)
-History.belongsTo(Items,{
-    foreignKey: 'itemId'
-})
-
-// Tours.hasMany(PurchasedTours)
-// PurchasedTours.belongsTo(Tours, {
-//     foreignKey: 'tourId'
-// })
 
 module.exports = {
-    Users, Token
+    Users, Token, Items, History
 }
