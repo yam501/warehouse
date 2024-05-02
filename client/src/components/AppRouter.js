@@ -3,6 +3,7 @@ import {Route, Routes} from "react-router-dom";
 import {Context} from "../index";
 import {adminRoutes, publicRoutes, workerRoutes} from "../routes";
 import ErrorPage from "./ErrorPage";
+import {observer} from "mobx-react-lite";
 
 const AppRouter = () => {
     const {user} = useContext(Context)
@@ -13,7 +14,7 @@ const AppRouter = () => {
                 <Route key={path} path={path} element={element} exact/>
             )}
 
-            {user._user.role === "WORKER" && workerRoutes.map(({path, element}) =>
+            {user._user.role === "EMPLOYEE" && workerRoutes.map(({path, element}) =>
                 <Route key={path} path={path} element={element} exact/>
             )}
             {publicRoutes.map(({path, element}) =>
@@ -25,4 +26,4 @@ const AppRouter = () => {
     );
 };
 
-export default AppRouter;
+export default observer(AppRouter);

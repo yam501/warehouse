@@ -1,17 +1,28 @@
-import React from 'react';
-import History from "./History";
+import React, {useContext, useEffect} from 'react';
+import History from "./HistoryComponents/History";
 import AddWorker from "./AddWorker";
 import {Container, Tab, Tabs} from "react-bootstrap";
+import AllProducts from "./AllProductsComponents/AllProducts";
+import {Context} from "../../index";
 
 const Admin = () => {
+    const {product, history} = useContext(Context)
+
+    useEffect(() => {
+        product.getAll()
+        history.getAll()
+    }, []);
+
     return (
-        <Container>
-            <Tabs
-                style={{marginTop: 20}}>
-                <Tab eventKey="createTour" title={"История изменений"}>
+        <Container className="mt-5">
+            <Tabs>
+                <Tab eventKey="allProducts" title={"Весь товар"}>
+                    <AllProducts/>
+                </Tab>
+                <Tab eventKey="history" title={"История изменений"}>
                     <History/>
                 </Tab>
-                <Tab eventKey="addEmployee" title={"Зарегестрировать сотрудника"}>
+                <Tab eventKey="addWorker" title={"Зарегистрировать сотрудника"}>
                     <AddWorker/>
                 </Tab>
             </Tabs>

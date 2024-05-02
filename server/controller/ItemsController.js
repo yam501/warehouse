@@ -6,7 +6,7 @@ class ItemsController {
 
     async getAll(req, res, next) {
         try {
-            return res.json(Items.findAll())
+            return res.json(await Items.findAll())
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }

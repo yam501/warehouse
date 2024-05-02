@@ -13,4 +13,8 @@ export const UserServices = {
     async logout(){
         return new Promise((resolve) => resolve($authHost.post('api/user/unlog')))
     },
+
+    async refresh(){
+        return new Promise((resolve) => resolve($authHost.get('api/user/refresh', { withCredentials: true})))
+    },
 }
