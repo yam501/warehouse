@@ -92,7 +92,7 @@ class UserController {
 
             res.cookie('refreshToken', tokens.refreshToken, { maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true })
 
-            return res.json({...tokens, user: {...userDto}})
+            return res.json({accessToken: tokens.accessToken, user: {...userDto}})
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
