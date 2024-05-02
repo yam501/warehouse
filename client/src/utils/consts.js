@@ -5,5 +5,5 @@ export const LOGIN_ROUTE = '/login'
 
 export const roles = {
     'ADMIN' : "Админ",
-    'WORKER' : "Работник"
+    'EMPLOYEE' : "Работник"
 }

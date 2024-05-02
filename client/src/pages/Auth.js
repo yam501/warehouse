@@ -17,7 +17,7 @@ const Auth = () => {
         if (user._user.role === "ADMIN") {
             navigate(ADMIN_ROUTE)
         }
-        if (user._user.role === "WORKER") {
+        if (user._user.role === "EMPLOYEE") {
             navigate(WORKER_ROUTE)
         }
     }, [user._user.role]);

@@ -10,26 +10,27 @@ const Header = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
-    const handleWorkerRoute = () =>{
+    const handleWorkerRoute = () => {
         navigate(WORKER_ROUTE)
     }
-    const handleAdminRoute = () =>{
+    const handleAdminRoute = () => {
         navigate(ADMIN_ROUTE)
     }
 
     return (
         <header
-            className="shadow-2xl h-16  px-72 text-blue-500 flex items-center justify-content-between  bg-transparent">
+            className="shadow-2xl h-16  px-72 text-blue-500 flex items-center justify-between  bg-transparent">
             <p className="text-2xl select-none">Оптовый склад
             </p>
             {user._isAuth ?
-                <div className="flex">
+                <div className="d-flex">
                     {
                         user._user.role === "ADMIN" && location.pathname === "/admin" &&
                         <div className="w-44">
                             <button
                                 onClick={handleWorkerRoute}
-                                className="text-lg  hover:text-blue-700 duration-500"> Панель работника</button>
+                                className="text-lg  hover:text-blue-700 duration-500"> Панель работника
+                            </button>
                         </div>
                     }
                     {
@@ -37,16 +38,18 @@ const Header = () => {
                         <div className="w-44">
                             <button
                                 onClick={handleAdminRoute}
-                                className="text-lg hover:text-blue-700 duration-500"> Админ панель</button>
+                                className="text-lg hover:text-blue-700 duration-500"> Админ панель
+                            </button>
                         </div>
                     }
                     <div className="w-28">
-                        <a className="text-lg hover:text-blue-700 duration-500" href=""
-                           onClick={() => user.logout()}>Выйти</a>
+                        <button className="text-lg hover:text-blue-700 duration-500"
+                           onClick={() => user.logout()}>Выйти</button>
                     </div>
                 </div>
                 :
                 <AuthButton/>
+
             }
         </header>
     );
