@@ -70,7 +70,7 @@ export default class UserStore {
 
     async logout(){
         try{
-            const response =  await UserServices.logout()
+            await UserServices.logout()
             localStorage.removeItem('token');
             this.setIsAuth(false)
             this.setUser(new IUser())
