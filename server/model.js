@@ -12,7 +12,7 @@ const Users = sequelize.define('users', {
 }, {timestamps: false})
 
 const Token = sequelize.define('tokens', {
-    userId: {type: DataTypes.INTEGER, primaryKey: true, allowNull: false},
+    userId: {type: DataTypes.INTEGER, primaryKey: true, allowNull: false, unique: true},
     refreshToken: {type: DataTypes.TEXT, allowNull: false}
 }, {timestamps: false})
 // , references:{model: Users, key: 'id'}

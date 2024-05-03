@@ -42,6 +42,7 @@ const Auth = () => {
                         required
                         className="mb-5 px-3 py-2 text-sm shadow-sm placeholder-slate-400
                                   focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+                        type="password"
                         placeholder="введите пароль..."
                         onChange={event => setPassword(event.target.value)}
                     />

@@ -16,7 +16,8 @@ const AllProducts = () => {
 
 
     const search = useMemo(() => {
-       return  productsArr.filter((obj) => obj.name.toLowerCase().includes(name.toLowerCase()) & obj.category.includes(category.toLowerCase()))
+        return productsArr.filter((obj) => obj.name.toLowerCase().includes(name.toLowerCase()) & obj.category.includes(category.toLowerCase()))
+
     }, [productsArr, name, category])
 
     return (

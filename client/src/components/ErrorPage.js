@@ -6,7 +6,7 @@ const ErrorPage = () => {
     const {user} = useContext(Context)
     return (
         <div style={{height: "calc(100vh - 96px)"}} className="flex justify-center">
-            {!user._isAuth ?
+            {user._isAuth ?
                 <div className="flex items-center text-2xl text-blue-500 select-none">Такой страницы нет 🙁</div>
                 :
                 <div className="flex items-center text-blue-500 flex-col my-auto">
