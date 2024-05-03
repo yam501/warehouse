@@ -30,7 +30,7 @@ const History = sequelize.define('history', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false},
     category: {type: DataTypes.STRING, allowNull: false},
-    date: {type: DataTypes.DATE, allowNull: false},
+    date: {type: DataTypes.DATE(5), allowNull: false},
     changes: {type: DataTypes.STRING, allowNull: false, defaultValue: 0}
 
 }, {timestamps: false})

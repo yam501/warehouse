@@ -16,7 +16,7 @@ const SendProductItem = ({item}) => {
     }
 
     const sendProducts = () => {
-        if (item.count - count > 0) {
+        if (item.count - count >= 0) {
             product.sendProduct(item.name, item.category, count)
         }
         else {
