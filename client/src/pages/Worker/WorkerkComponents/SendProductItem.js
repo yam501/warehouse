@@ -9,10 +9,13 @@ const SendProductItem = ({item}) => {
     const [showChangesButton, setShowChangesButton] = useState("block")
     const [count, setCount] = useState(0)
 
-
     const show = () => {
         setShowChangesForm("block")
         setShowChangesButton("hidden")
+    }
+
+    const handleCount = (value) =>{
+        setCount(value)
     }
 
     const sendProducts = () => {
@@ -37,7 +40,7 @@ const SendProductItem = ({item}) => {
                 {item.name}
             </th>
             <th>
-                {Number(item.count) - Number(count)}
+                {item.count}
             </th>
             <th style={{width: 353, height: 120}}>
                 <Stack className="h-100 d-flex justify-content-center" direction="horizontal" gap={3}>
@@ -46,7 +49,7 @@ const SendProductItem = ({item}) => {
                             type="number"
                             className="w-40"
                             placeholder="Количество"
-                            onChange={event => setCount(event.target.value)}
+                            onChange={event => handleCount(event.target.value)}
                         />
                         <button onClick={sendProducts}
                                 className="ms-2 bg-blue-500 w-40 active:bg-blue-500 text-amber-50 border-0 rounded-md h-10 hover:bg-blue-700 duration-500">Убрать

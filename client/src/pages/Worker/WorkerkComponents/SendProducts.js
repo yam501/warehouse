@@ -17,8 +17,15 @@ const SendProducts = () => {
 
 
     const search = useMemo(() => {
-        return  sendArr.filter((obj) => obj.name.toLowerCase().includes(name.toLowerCase()) & obj.category.includes(category.toLowerCase()))
-    }, [sendArr, name, category])
+        return sendArr.filter((obj) => {
+            const nameLower = obj.name ? obj.name.toLowerCase() : '';
+            const categoryLower = obj.category ? obj.category.toLowerCase() : '';
+
+            const nameMatches = nameLower.includes(name.toLowerCase());
+            const categoryMatches = categoryLower.includes(category.toLowerCase());
+            return nameMatches && categoryMatches;
+        });
+    }, [sendArr, name, category]);
 
 
     return (

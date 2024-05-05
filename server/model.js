@@ -7,15 +7,12 @@ const Users = sequelize.define('users', {
     number: {type: DataTypes.INTEGER, unique: true},
     password: {type: DataTypes.STRING, allowNull: false},
     role: {type: DataTypes.STRING, allowNull: false, defaultValue: "EMPLOYEE"}
-
-
 }, {timestamps: false})
 
 const Token = sequelize.define('tokens', {
     userId: {type: DataTypes.INTEGER, primaryKey: true, allowNull: false, unique: true},
     refreshToken: {type: DataTypes.TEXT, allowNull: false}
 }, {timestamps: false})
-// , references:{model: Users, key: 'id'}
 
 
 const Items = sequelize.define('items', {
