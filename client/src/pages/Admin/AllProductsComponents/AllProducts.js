@@ -11,13 +11,28 @@ const AllProducts = () => {
     const [category, setCategory] = useState('')
 
     useEffect(() => {
-        setProductsArr(product.products ? product.products : [])
-    }, [product.products]);
+        product.getAll().then(() => setProductsArr(product.products ? product.products : []))
+    }, []);
 
+
+    const handleCategory = (value) => {
+        setCategory(value)
+    }
+    const handleName = (value) => {
+        setName(value)
+    }
 
     const search = useMemo(() => {
-       return  productsArr.filter((obj) => obj.name.toLowerCase().includes(name.toLowerCase()) & obj.category.includes(category.toLowerCase()))
-    }, [productsArr, name, category])
+        return productsArr.filter((obj) => {
+            const nameLower = obj.name ? obj.name.toLowerCase() : '';
+            const categoryLower = obj.category ? obj.category.toLowerCase() : '';
+
+            const nameMatches = nameLower.includes(name.toLowerCase());
+            const categoryMatches = categoryLower.includes(category.toLowerCase());
+
+            return nameMatches && categoryMatches;
+        });
+    }, [productsArr, name, category]);
 
     return (
         <Container className="mt-5">
@@ -26,13 +41,13 @@ const AllProducts = () => {
                     value={category}
                     className="w-2/5 h-11 me-auto textarea"
                     placeholder="Категория..."
-                    onChange={event => setCategory(event.target.value)}
+                    onChange={event => handleCategory(event.target.value)}
                 />
                 <Form.Control
                     value={name}
                     className="w-2/5 h-11 me-auto textarea"
                     placeholder="Название..."
-                    onChange={event => setName(event.target.value)}
+                    onChange={event => handleName(event.target.value)}
                 />
             </Stack>
             <Container className="mt-5 table-wrapper">

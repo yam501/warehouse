@@ -13,16 +13,19 @@ class UserController {
 
             const candidate = await Users.findOne({where: {number: number}})
 
+            // проверка на пользователя
             if (candidate) {
                 return next(ApiError.badRequest('Пользователь с таким номером уже существует'))
             }
 
+            // хешируется пароль
             const hashPassword = await bcrypt.hash(password, 5)
 
             const user = await Users.create({number, role, password: hashPassword})
 
 
             const userDto = new UserDto(user)
+            // генерация токена токен
             const tokens = tokenController.generateTokens({...userDto})
             await tokenController.saveToken(userDto.id, tokens.refreshToken)
             return res.json("Success")

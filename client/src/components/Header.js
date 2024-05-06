@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import {Context} from "../index";
-import AuthButton from "./AuthButton";
 import {observer} from "mobx-react-lite";
 import {useLocation, useNavigate} from "react-router-dom";
 import {ADMIN_ROUTE, WORKER_ROUTE} from "../utils/consts";
@@ -22,7 +21,7 @@ const Header = () => {
             className="shadow-2xl h-16  px-72 text-blue-500 flex items-center justify-between  bg-transparent">
             <p className="text-2xl select-none">Оптовый склад
             </p>
-            {user._isAuth ?
+            {user._isAuth &&
                 <div className="d-flex">
                     {
                         user._user.role === "ADMIN" && location.pathname === "/admin" &&
@@ -44,12 +43,10 @@ const Header = () => {
                     }
                     <div className="w-28">
                         <button className="text-lg hover:text-blue-700 duration-500"
-                           onClick={() => user.logout()}>Выйти</button>
+                                onClick={() => user.logout()}>Выйти
+                        </button>
                     </div>
                 </div>
-                :
-                <AuthButton/>
-
             }
         </header>
     );

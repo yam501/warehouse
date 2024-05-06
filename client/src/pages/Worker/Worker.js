@@ -1,18 +1,11 @@
-import React, {useContext, useEffect} from 'react';
+import React from 'react';
 import {Container, Tab, Tabs} from "react-bootstrap";
 import AllProducts from "../Admin/AllProductsComponents/AllProducts";
 import AddProducts from "./WorkerkComponents/AddProducts";
 import SendProducts from "./WorkerkComponents/SendProducts";
-import {Context} from "../../index";
 import {observer} from "mobx-react-lite";
 
 const Worker = () => {
-    const {product, history} = useContext(Context)
-
-    useEffect(() => {
-        product.getAll()
-        history.getAll()
-    }, []);
 
     return (
         <Container className="mt-5">
