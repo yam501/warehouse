@@ -25,10 +25,7 @@ class UserController {
             const userDto = new UserDto(user)
             const tokens = tokenController.generateTokens({...userDto})
             await tokenController.saveToken(userDto.id, tokens.refreshToken)
-
-            res.cookie('refreshToken', tokens.refreshToken, {maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true})
             return res.json("Success")
-            // return res.json({accessToken: tokens.accessToken, user: {...userDto}})
 
         } catch (e) {
             next(ApiError.badRequest(e.message))
